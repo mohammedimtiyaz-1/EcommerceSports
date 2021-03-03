@@ -3,12 +3,14 @@ import {
   DECREMENT_CART_ITEM_QUANTITY,
   INCREMENT_CART_ITEM_QUANTITY,
   REMOVE_PRODUCT_FROM_CART,
+  CLEAR_CART,
 } from "../actions";
 import { items } from "../data/items";
 
 const initialState = {
   products: items,
   cart: [],
+  auth: null,
 };
 
 const shopReducer = (state = initialState, action) => {
@@ -75,6 +77,8 @@ const shopReducer = (state = initialState, action) => {
       updatedCart.splice(updatedItemIndex, 1);
 
       return { ...state, cart: updatedCart };
+    case CLEAR_CART:
+      return initialState;
     default:
       return state;
   }

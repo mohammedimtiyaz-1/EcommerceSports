@@ -20,7 +20,7 @@ const Header = ({ cartLength }) => {
               style={{ fontSize: "large", color: "white" }}
             >
               <i className="fa fa-shopping-cart mr-2" aria-hidden="true" />
-              Cart {cartLength ? `(${cartLength})` : ""}
+              Cart {cartLength ? `(${cartLength})` : "(0)"}
             </li>
           </ul>
         </div>

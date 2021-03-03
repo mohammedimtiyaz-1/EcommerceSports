@@ -21,8 +21,8 @@ const CategoryFilter = (props) => {
         <h3>Sports</h3>
       </div>
       <ul className="list-group flex-row flex-wrap">
-        {categorys.map((category) => (
-          <li className="list-group-item flex-50">
+        {categorys.map((category, i) => (
+          <li key={i + category} className="list-group-item flex-50">
             <label className="custom-checkbox text-capitalize">
               {category} ({categoryItemsCount[category]})
               <input

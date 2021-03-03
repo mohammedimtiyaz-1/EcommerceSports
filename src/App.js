@@ -9,7 +9,7 @@ import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
-import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import Checkout from "./pages/Checkout/Checkout";
 
 export const store = createStore(
   rootReducer,
@@ -31,6 +31,7 @@ function App() {
               }}
             />
             <Route exact path={"/products"} component={Home} />
+            <Route exact path={"/checkout"} component={Checkout} />
             <Route exact path={"/products/:id"} component={ProductDetail} />
           </Switch>
           <Footer />

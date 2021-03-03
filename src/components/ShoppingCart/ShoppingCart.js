@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { formatMoney } from "../../pipes/priceFormatter";
 import CartItem from "../../components/CartItem/CartItem";
@@ -33,6 +34,15 @@ const ShoppingCart = (props) => {
                   </div>
                 </div>
               </div>
+
+              <Link
+                to="/checkout"
+                style={{ fontSize: "large", color: "green" }}
+              >
+                <button style={{ margin: "10px", borderRadius: "5%" }}>
+                  Checkout
+                </button>
+              </Link>
             </div>
           </div>
         </div>
