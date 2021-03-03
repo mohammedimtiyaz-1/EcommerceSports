@@ -22,9 +22,7 @@ const ShoppingCart = (props) => {
                     <CartItem {...cart} img={cart.images[0]} />
                   ))
                 ) : (
-                  <h4 className="text-center">
-                    There is no product in your cart
-                  </h4>
+                  <h4 className="text-center">No products in cart</h4>
                 )}
               </div>
               <div className="card-footer">

@@ -7,7 +7,12 @@ import { clearCart } from "../../actions";
 
 const Checkout = (props) => {
   const clearCartTrigger = () => {
-    props.dispatch(clearCart());
+    if (props.auth) {
+      props.dispatch(clearCart());
+      alert("Successfully placed the order");
+    } else {
+      alert("Must login");
+    }
   };
   return (
     <>
@@ -29,26 +34,28 @@ const Checkout = (props) => {
               </h1>
             )}
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-around",
-            }}
-          >
-            <div className="card-footer">
-              <div className="pull-right" style={{ margin: "10px" }}>
-                <div className="pull-right" style={{ margin: "5px" }}>
-                  Total price: <b>{formatMoney(props.totalPrice)}</b>
+          {props.cartItemCount && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+              }}
+            >
+              <div className="card-footer">
+                <div className="pull-right" style={{ margin: "10px" }}>
+                  <div className="pull-right" style={{ margin: "5px" }}>
+                    Total price: <b>{formatMoney(props.totalPrice)}</b>
+                  </div>
                 </div>
               </div>
+              <button onClick={clearCartTrigger}>
+                <Link to="/" style={{ fontSize: "large", color: "green" }}>
+                  Place Order
+                </Link>
+              </button>
             </div>
-            <button onClick={clearCartTrigger}>
-              <Link to="/" style={{ fontSize: "large", color: "green" }}>
-                Place Order
-              </Link>
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </>
@@ -56,13 +63,12 @@ const Checkout = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state, "state has changed");
-
   return {
     cartItems: state.shop.cart,
     cartItemCount: state.shop.cart.reduce((count, curItem) => {
       return count + curItem.quantity;
     }, 0),
+    auth: state.shop.auth,
     totalPrice: state.shop.cart.reduce((count, curItem) => {
       return count + curItem.price * curItem.quantity;
     }, 0),

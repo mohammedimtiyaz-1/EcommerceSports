@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-const Header = ({ cartLength }) => {
+const Header = ({ cartLength, auth }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container">
@@ -22,6 +22,13 @@ const Header = ({ cartLength }) => {
               <i className="fa fa-shopping-cart mr-2" aria-hidden="true" />
               Cart {cartLength ? `(${cartLength})` : "(0)"}
             </li>
+            <li
+              className="nav-item"
+              style={{ fontSize: "large", color: "white" }}
+            >
+              <i className="fa fa-shopping-cart mr-2" aria-hidden="true" />
+              {auth ? `User: ${auth}` : `User: Guest`}
+            </li>
           </ul>
         </div>
       </div>
@@ -32,6 +39,7 @@ const Header = ({ cartLength }) => {
 const mapStateToProps = (state) => {
   return {
     cartLength: state.shop.cart.length,
+    auth: state.shop.auth,
   };
 };
 
